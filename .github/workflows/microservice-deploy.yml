@@ -1,0 +1,26 @@
+name: "Microservice CI/CD"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build & Push Docker Image
+        run: |
+          docker build -t ademi06/microservice:v1 .
+          docker push ademi06/microservice:v1
+
+      - name: Deploy to Kubernetes via ArgoCD
+        run: |
+          kubectl apply -f argocd/microservice-argocd.yaml
