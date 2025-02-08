@@ -1,0 +1,13 @@
+replicaCount: 2
+image:
+  repository: ademi06/microservice
+  tag: v1
+
+service:
+  type: ClusterIP
+  port: 3000
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "256Mi"

@@ -1,0 +1,14 @@
+{
+    "name": "observability-microservice",
+    "version": "1.0.0",
+    "main": "app.js",
+    "dependencies": {
+      "express": "^4.17.1",
+      "winston": "^3.3.3",
+      "prom-client": "^14.0.1"
+    },
+    "scripts": {
+      "start": "node app.js"
+    }
+  }
+  
